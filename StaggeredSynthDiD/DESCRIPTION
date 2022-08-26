@@ -3,7 +3,7 @@ Type: Package
 Title: Synthetic DiD estimator for staggered adoption settings
 Version: 0.1.0
 Author: Gregor Steiner
-Maintainer: Gregor Steiner
+Maintainer: Gregor Steiner <gregorsteiner7@gmail.com>
 Description: This package extends the synthetic DiD estimator to staggered adoption settings as proposed in the
     Appendix of Arkhangelsky et al. (2021) <doi:10.1257/aer.20190159>. It builds on the synthdid package by David Hirshberg.
 License: What license is it under?
