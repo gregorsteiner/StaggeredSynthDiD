@@ -4,7 +4,7 @@
 \title{staggered_synthdid
 %%  ~~function to do ... ~~
 }
-\description{Provides a point estimate of and inference on the Average Treatment Effect on the Treated (ATT).
+\description{Provides a point estimate of and inference on the Average Treatment Effect (ATE).
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{

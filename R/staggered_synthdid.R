@@ -16,7 +16,7 @@ staggered_synthdid <- function(data, unit = "Unit", time = "Time",
   TT <- length(unique(data$Time))
 
   # compute the ATT as the weighted average
-  tau_hat <- estimate_att(data, covariates = covariates)
+  tau_hat <- estimate(data, covariates = covariates)
 
   # estimate variance with the bootstrap estimator
   B <- boot_iter
@@ -33,7 +33,7 @@ staggered_synthdid <- function(data, unit = "Unit", time = "Time",
     data_boot$Unit <- rep(1:N, each = TT)
 
     # if there is at least one treated unit, compute the sdid estimator
-    if(any(data_boot$W == 1)) taus[i] <- estimate_att(data_boot)
+    if(any(data_boot$W == 1)) taus[i] <- estimate(data_boot)
 
   }
 

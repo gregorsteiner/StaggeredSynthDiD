@@ -1,14 +1,14 @@
-\name{estimate_att}
-\alias{estimate_att}
+\name{estimate}
+\alias{estimate}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{estimate_att
+\title{estimate
 %%  ~~function to do ... ~~
 }
-\description{Provides a point estimate of the Average Treatment Effect on the Treated (ATT). To also obtain standard errors and confidence intervals use staggered_synthdid.
+\description{Provides a point estimate of the Average Treatment Effect (ATE). To also obtain standard errors and confidence intervals use staggered_synthdid.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-estimate_att(x)
+estimate(x)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

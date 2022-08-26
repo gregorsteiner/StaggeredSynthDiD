@@ -1,6 +1,6 @@
 
 ### function to estimate the ATT ###
-estimate_att <- function(data, unit = "Unit", time = "Time",
+estimate <- function(data, unit = "Unit", time = "Time",
                          outcome = "Y", treatment = "W",
                          covariates = NULL){
 
