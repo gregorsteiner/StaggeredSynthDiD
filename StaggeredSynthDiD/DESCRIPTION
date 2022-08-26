@@ -1,11 +1,11 @@
 Package: StaggeredSynthDiD
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Synthetic DiD estimator for staggered adoption settings
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author: Gregor Steiner
+Maintainer: Gregor Steiner
+Description: This package extends the synthetic DiD estimator to staggered adoption settings as proposed in the
+    Appendix of Arkhangelsky et al. (2021) <doi:10.1257/aer.20190159>. It builds on the synthdid package by David Hirshberg.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
