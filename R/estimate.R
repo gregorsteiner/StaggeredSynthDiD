@@ -55,6 +55,6 @@ estimate <- function(data, unit = "Unit", time = "Time",
   })
 
   # compute the ATT as the weighted average
-  att <- as.numeric(result["Estimate", ] %*% result["Weight", ])
-  return(att)
+  tau_hat <- as.numeric(result["Estimate", ] %*% result["Weight", ])
+  return(tau_hat)
 }
