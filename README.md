@@ -7,7 +7,7 @@ As proposed in the Appendix of Arkhangelsky et al. (2021), the estimator is appl
 
 The current development version can be installed from Github:
 
-```
+```R
 devtools::install_github("gregorsteiner/StaggeredSynthDiD")
 ```
 
