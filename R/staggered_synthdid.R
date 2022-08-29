@@ -3,7 +3,7 @@
 ### get point estimate, estimate variance and construct CI ###
 staggered_synthdid <- function(data, unit = "Unit", time = "Time",
                                outcome = "Y", treatment = "W",
-                               covariates = NULL, vcov = "boot",
+                               covariates = NULL, vcov = "jack",
                                iterations = 100, ci_cov = 0.95){
 
 
@@ -20,8 +20,62 @@ staggered_synthdid <- function(data, unit = "Unit", time = "Time",
   # some checks
   if(!(vcov %in% c("boot", "jack", "placebo"))) stop("Invalid vcov argument")
 
-  # compute the ATE as the weighted average
-  tau_hat <- estimate(data, covariates = covariates)
+  # define estimation function (will be reused for the variance estimation)
+  estimate <- function(data, covariates = NULL){
+
+    # create a new variable indicating when treatment started (0 indicates never treated)
+    # we do this using data.table functionality
+    data <- data.table::setDT(data)
+    data[, Start := ifelse(any(W == 1), Time[W == 1][1], 0), by = .(Unit)]
+
+    # isolate never treated units
+    data_never <- data[data$Start == 0, ]
+
+    # get the total number of treated unit-time combinations (needed for the weights calculation later)
+    NT_treated <- sum(data$W == 1)
+
+    # then loop over different adoption dates and compute treatment effect for each
+    adop_dates <- unique(data$Start[data$Start != 0])
+
+    result <- sapply(adop_dates, function(adop){
+
+      # merge never treated and treated for this specific adoption date
+      data_int <- rbind(data_never, data[data$Start == adop, ])
+
+      # get matrices for this dataset
+      input <- suppressWarnings(synthdid::panel.matrices(data_int, unit = unit, time = time,
+                                                         outcome = outcome, treatment = treatment))
+
+      # add covariates if desired
+      if(!is.null(covariates)){
+        # Convert them into 3d array as required by the synthdid function
+        X <- simplify2array(lapply(covariates, function(x){
+          do.call(rbind, split(data_int[, get(x)], data_int[, get(unit)]))
+        }))
+
+        # and compute estimator
+        est <- synthdid::synthdid_estimate(input$Y, input$N0, input$T0, X)
+      } else{
+        # else compute estimator without covariates
+        est <- synthdid::synthdid_estimate(input$Y, input$N0, input$T0)
+      }
+
+      # and compute weights
+      weight <- sum(data_int$W == 1) / NT_treated
+
+      # return estimated Treatment effect and weight
+      return(c("Estimate" = as.numeric(est),
+               "Weight" = weight))
+
+    })
+
+    # compute the ATT as the weighted average
+    tau_hat <- as.numeric(result["Estimate", ] %*% result["Weight", ])
+    return(tau_hat)
+  }
+
+  # compute the ATE using that function
+  tau_hat <- estimate(data = data, covariates = covariates)
 
   # bootstrap varaince estimator
   if(vcov == "boot"){
@@ -120,4 +174,5 @@ staggered_synthdid <- function(data, unit = "Unit", time = "Time",
               "Confidence Interval" = CI))
 
 }
+
 
