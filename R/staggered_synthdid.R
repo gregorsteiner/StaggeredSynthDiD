@@ -169,9 +169,9 @@ staggered_synthdid <- function(data, unit = "Unit", time = "Time",
   CI <- tau_hat + c("Lower" = 1, "Upper" = -1) * qnorm(alpha / 2) * sqrt(V_hat)
 
   # return everything
-  return(list("Point Estimate" = tau_hat,
+  return(list("Estimate" = tau_hat,
               "SE" = sqrt(V_hat),
-              "Confidence Interval" = CI))
+              "CI" = CI))
 
 }
 
