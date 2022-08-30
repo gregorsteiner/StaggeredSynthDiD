@@ -1,7 +1,7 @@
 
 
 ### get point estimate, estimate variance and construct CI ###
-staggered_synthdid <- function(data, unit = "Unit", time = "Time",
+StaggeredSynthDiD <- function(data, unit = "Unit", time = "Time",
                                outcome = "Y", treatment = "W",
                                covariates = NULL, vcov = "jack",
                                iterations = 100, ci_cov = 0.95){

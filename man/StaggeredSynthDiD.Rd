@@ -1,5 +1,5 @@
-\name{staggered_synthdid}
-\alias{staggered_synthdid}
+\name{StaggeredSynthDiD}
+\alias{StaggeredSynthDiD}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Synthetic DiD estimation for staggered adoption settings
 %%  ~~function to do ... ~~
@@ -8,7 +8,7 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-staggered_synthdid(data)
+StaggeredSynthDiD(data)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -65,7 +65,7 @@ Y <- tau * W + rnorm(N * TT)
 })
 
 # use function
-staggered_synthdid(data, vcov = "jack")
+StaggeredSynthDiD(data, vcov = "jack")
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):
