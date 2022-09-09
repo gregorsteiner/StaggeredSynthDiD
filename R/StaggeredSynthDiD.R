@@ -1,6 +1,24 @@
 
+#' Synthetic DiD estimation for staggered adoption settings
+#'
+#' @description Estimates the Average Treatment Effect (ATE) in staggered adoption settings. Standard errors and a confidence interval with user-specified desired coverage is provided.
+#'
+#' @param data The data set. Must be in long format, i.e., one row per unit time combination.
+#' @param unit The name of the column containing the unit id.
+#' @param time The name of the column containing the time period.
+#' @param outcome The name of the column containing the outcome.
+#' @param treatment The name of the column containing the treatment indicator.
+#' @param covariates A character vector of covariate column names. NULL if no covariates should be included.
+#' @param vcov The variance estimator to be used. Should be one of "boot", "jack" or "placebo".
+#' @param iterations Number of resampling iterations. Only relevant for the bootstrap and placebo variance estimators.
+#' @param ci_cov Desired nominal coverage probability of the confidence interval.
+#'
+#' @return A list containing the point estimate, the standard error, and a confidence interval with user-specified nominal coverage.
+#'
+#' @references Arkhangelsky, Dmitry, Susan Athey, David A. Hirshberg, Guido W. Imbens, and Stefan Wager. 2021. "Synthetic Difference-in-Differences." American Economic Review, 111 (12): 4088-4118.
+#'
+#' @export StaggeredSynthDiD
 
-### get point estimate, estimate variance and construct CI ###
 StaggeredSynthDiD <- function(data, unit = "Unit", time = "Time",
                                outcome = "Y", treatment = "W",
                                covariates = NULL, vcov = "jack",
