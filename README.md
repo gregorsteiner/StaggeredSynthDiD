@@ -34,7 +34,8 @@ data <- within(data, {
 
 # use function
 StaggeredSynthDiD(data)
-´´´
+
+```
 
 
 ### References
