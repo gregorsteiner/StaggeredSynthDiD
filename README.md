@@ -1,7 +1,6 @@
 # StaggeredSynthDiD: Synthetic Difference-in-Differences Estimation in Staggered Adoption Settings
 
-This package extends the synthetic Difference-in-Differences (DiD) estimator by Arkhangelsky et al. (2021) to staggered adoption settings, building on the [**synthdid**](https://synth-inference.github.io/synthdid/) package.
-As proposed in the Appendix of Arkhangelsky et al. (2021), the estimator is applied repeatedly, once for every adoption date, and a weighted average is calculated.
+This package is a simple extension of the [**synthdid**](https://synth-inference.github.io/synthdid/) package. It implements the Synthetic Difference-in-Differences (DiD) estimator by Arkhangelsky et al. (2021) for staggered adoption settings. As proposed in the Appendix of Arkhangelsky et al. (2021), the estimator is applied repeatedly, once for every adoption date, and a weighted average is calculated.
 
 ### Installation
 
