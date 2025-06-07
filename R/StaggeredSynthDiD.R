@@ -138,7 +138,7 @@ StaggeredSynthDiD <- function(data, unit = "Unit", time = "Time",
     })
 
     # compute variance
-    V_hat <- (N - 1) * mean((taus_jack - tau_hat)^2)
+    V_hat <- (N - 1) * mean((taus_jack - mean(taus_jack, na.rm = TRUE))^2)
   }
 
   # placebo variance estimator
